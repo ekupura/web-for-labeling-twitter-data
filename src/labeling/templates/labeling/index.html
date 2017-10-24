@@ -1,0 +1,45 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/normalize.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/application.css' %}" />
+    <meta name="viewport" content="initial-scale=1">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 top">
+            {% if user %}
+                <table class="table table-bordered main-table">
+                    <tr><td class="first">unique ID</td><td>{{ user.id }}</td></tr>
+                    <tr><td>screen ID</td><td>{{ user.screen_name }}</td></tr>
+                    <tr><td>description</td><td>{{ user.description }}</td></tr>
+                    {% for s in search %}
+                    <tr><td>tweet{{forloop.counter}}</td><td>{{ s.tweet }}</td></tr>
+                    {% endfor %}
+                </table>
+            {% else %}
+                <p>ないです</p>
+            {% endif %}
+            </div>
+        </div>
+        <form action="{% url 'vote' user.id %}" method="post">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-4 box">
+                    <button type="submit" name="choice" class="btn btn-info btn-block" value="YES">KOSEN</button>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-4 box">
+                    <button type="submit" name="choice" class="btn btn-info btn-block" value="OB">KOSEN OB</button>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-4 box">
+                    <button type="submit" name="choice" class="btn btn-info btn-block" value="NO">NOT KOSEN</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+

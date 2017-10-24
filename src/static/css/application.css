@@ -1,0 +1,16 @@
+@media only screen and (max-width:992px){
+    .box{margin-bottom:15px;}
+}
+
+.top {
+    margin-top:15px;
+}
+
+table.main-table {
+    border: 1;
+    table-layout: fixed;
+}
+
+td.first {
+    width: 130px;
+}
