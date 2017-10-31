@@ -14,3 +14,7 @@ table.main-table {
 td.first {
     width: 130px;
 }
+
+li {
+    font-size:16px;
+}

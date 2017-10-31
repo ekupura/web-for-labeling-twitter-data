@@ -19,9 +19,15 @@ def index(request):
     }
     return HttpResponse(template.render(context, request))
 
+def help(request):
+    template = loader.get_template('labeling/help.html')
+    context = {
+    }
+    return HttpResponse(template.render(context, request))
+
 def vote(request, user_id):
     choice = request.POST['choice']
     user = Users.objects.filter(id=user_id)[0]
-    user.nit = (1 if choice == "OK" else (2 if choice == "OB" else 0))
+    user.nit = (1 if choice == "YES" else (2 if choice == "OB" else 0))
     user.save()
     return HttpResponseRedirect(reverse('index'))
